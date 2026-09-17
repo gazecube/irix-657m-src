@@ -12,6 +12,23 @@
 
 typedef unsigned long ulong_t;
 
+#ifndef MAXNAMELEN
+#define MAXNAMELEN 256
+#endif
+
+#ifndef FSID_NFS
+#define FSID_NFS "nfs"
+#endif
+#ifndef FSID_NFS2
+#define FSID_NFS2 "nfs2"
+#endif
+#ifndef FSID_NFS3
+#define FSID_NFS3 "nfs3"
+#endif
+#ifndef FSID_CACHEFS
+#define FSID_CACHEFS "cachefs"
+#endif
+
 enum FAMCodes {
     FAMChanged = 1,
     FAMDeleted = 2,
