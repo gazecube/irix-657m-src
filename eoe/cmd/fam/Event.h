@@ -1,7 +1,11 @@
 #ifndef Event_included
 #define Event_included
 
+#ifdef __linux__
+#include "../../include/fam.h"
+#else
 #include <fam.h>
+#endif
 
 #include "ChangeFlags.h"
 
