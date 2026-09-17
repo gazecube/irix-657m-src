@@ -4,6 +4,9 @@
 #ifdef __linux__
 
 #include <limits.h>
+#include <sys/types.h>
+
+typedef unsigned long ulong_t;
 
 #ifndef NGROUPS_UMAX
 # ifdef NGROUPS_MAX
