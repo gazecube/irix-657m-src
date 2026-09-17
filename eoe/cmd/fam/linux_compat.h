@@ -9,6 +9,19 @@
 
 typedef unsigned long ulong_t;
 
+enum FAMCodes {
+    FAMChanged = 1,
+    FAMDeleted = 2,
+    FAMStartExecuting = 3,
+    FAMStopExecuting = 4,
+    FAMCreated = 5,
+    FAMMoved = 6,
+    FAMAcknowledge = 7,
+    FAMExists = 8,
+    FAMEndExist = 9
+};
+
+
 #ifndef NGROUPS_UMAX
 # ifdef NGROUPS_MAX
 #  define NGROUPS_UMAX NGROUPS_MAX
