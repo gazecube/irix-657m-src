@@ -1,10 +1,6 @@
 #include "RPC_TCP_Connector.h"
 
-#ifdef __linux__
-#include <strings.h>
-#else
 #include <bstring.h>
-#endif
 #include <errno.h>
 #include <rpc/rpc.h>
 #include <rpc/pmap_prot.h>
