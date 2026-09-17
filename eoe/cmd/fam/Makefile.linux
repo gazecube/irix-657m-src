@@ -1,0 +1,32 @@
+CXX ?= g++
+
+CLIENT   = Client InternalClient MxClient TCP_Client RemoteClient
+SERVER   = ServerHost ServerHostRef
+FILESYS  = FileSystem LocalFileSystem NFSFileSystem FileSystemTable
+INTEREST = Interest ClientInterest File Directory DirEntry DirectoryScanner
+NETWORK  = NetConnection ClientConnection ServerConnection RPC_TCP_Connector
+SUPPORT  = main BTB Listener Log Pollster Scanner Scheduler timeval
+SIMPLE   = Activity ChangeFlags Cred Event
+
+ALL      = $(INTEREST) $(CLIENT) $(SERVER) $(FILESYS) $(NETWORK) \
+           $(SUPPORT) $(SIMPLE)
+
+SOURCES  = $(ALL:=.c++) IMon_linux.c++ linux_compat.c++
+OBJECTS  = $(SOURCES:.c++=.o)
+
+CPPFLAGS += -D_GNU_SOURCE -DNDEBUG -include linux_compat.h -I. -I/usr/include/tirpc
+CXXFLAGS += -std=gnu++98 -fpermissive -O2 -Wall -Wno-deprecated
+LDLIBS   += -ltirpc
+
+.PHONY: all clean
+
+all: fam-linux
+
+fam-linux: $(OBJECTS)
+	$(CXX) $(OBJECTS) $(LDFLAGS) $(LDLIBS) -o $@
+
+%.o: %.c++
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) fam-linux
