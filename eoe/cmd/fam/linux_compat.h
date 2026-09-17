@@ -3,9 +3,12 @@
 
 #ifdef __linux__
 
+#include <errno.h>
 #include <limits.h>
 #include <stddef.h>
+#include <stdlib.h>
 #include <sys/types.h>
+#include <unistd.h>
 
 typedef unsigned long ulong_t;
 
@@ -37,6 +40,16 @@ enum FAMCodes {
 int sgikopt(const char *option, char *buf, int buflen);
 int syssgi(int request, ...);
 int _daemonize(int flags, int fd0, int fd1, int fd2);
+
+static inline int oserror()
+{
+    return errno;
+}
+
+static inline int getdtablehi()
+{
+    return getdtablesize();
+}
 
 #endif
 
