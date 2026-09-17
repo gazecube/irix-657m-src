@@ -8,6 +8,13 @@
 #include <string.h>
 #include <unistd.h>
 
+extern "C" void
+blkclr(void *p, size_t n)
+{
+    memset(p, 0, n);
+}
+
+
 int
 sgikopt(const char *option, char *buf, int buflen)
 {
