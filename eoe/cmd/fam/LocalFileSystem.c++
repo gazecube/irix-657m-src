@@ -1,10 +1,6 @@
 #include "LocalFileSystem.h"
 
-#ifdef __linux__
-#include <strings.h>
-#else
 #include <bstring.h>
-#endif
 #include <string.h>
 
 #include "Log.h"
