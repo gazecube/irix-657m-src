@@ -14,7 +14,7 @@ ALL      = $(INTEREST) $(CLIENT) $(SERVER) $(FILESYS) $(NETWORK) \
 SOURCES  = $(ALL:=.c++) IMon_linux.c++ linux_compat.c++
 OBJECTS  = $(SOURCES:.c++=.o)
 
-CPPFLAGS += -D_GNU_SOURCE -DNDEBUG -include linux_compat.h -I. -I/usr/include/tirpc
+CPPFLAGS += -D_GNU_SOURCE -DNDEBUG -include linux_compat.h -I. -I../../include -I/usr/include/tirpc
 CXXFLAGS += -std=gnu++98 -fpermissive -O2 -Wall -Wno-deprecated
 LDLIBS   += -ltirpc
 
