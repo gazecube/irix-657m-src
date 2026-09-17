@@ -1,6 +1,10 @@
 #include "Interest.h"
 
+#ifdef __linux__
+#include <strings.h>
+#else
 #include <bstring.h>
+#endif
 #include <string.h>
 #include <errno.h>
 #include <sys/param.h>
