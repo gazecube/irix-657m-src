@@ -3,7 +3,11 @@
 #include <string.h>
 #include <signal.h>
 #include <sys/stat.h>
+#ifdef __linux__
+#include "linux_compat.h"
+#else
 #include <sys/syssgi.h>
+#endif
 #include <unistd.h>
 
 #include "Activity.h"
