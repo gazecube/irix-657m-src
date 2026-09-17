@@ -58,12 +58,15 @@ Interest::Interest(const char *name, FileSystem *fs)
 
     //  Enable low-level monitoring.
 
-
-      	// The NetWare filesystem is too slow to monitor, so
-      	// don't even try.
-    
-	if ( strcmp( (char *) &status.st_fstype, "nwfs"))
-		fs->ll_monitor(this, s == IMon::OK);
+    // The NetWare filesystem is too slow to monitor, so don't even try.
+#ifdef __linux__
+    // Linux struct stat has no st_fstype member.  Let the filesystem
+    // abstraction decide whether low-level monitoring is appropriate.
+    fs->ll_monitor(this, s == IMon::OK);
+#else
+    if (strcmp((char *)&status.st_fstype, "nwfs"))
+        fs->ll_monitor(this, s == IMon::OK);
+#endif
 }
 
 
