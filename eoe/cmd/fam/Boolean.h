@@ -29,6 +29,8 @@ private:
 
 #endif /* NDEBUG */
 
+#ifndef __linux__
 const Boolean true(1), false(0);
+#endif
 
 #endif /* !Boolean_included */
