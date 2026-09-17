@@ -76,7 +76,7 @@ RPC_TCP_Connector::try_to_connect()
 	try_again();
 	return;
     }
-    rc = connect(fd, &address, sizeof address);
+    rc = connect(fd, (const struct sockaddr *)&address, sizeof address);
     if (rc == 0)
     {   sockfd = fd;
 	write_handler(fd, this);
@@ -98,7 +98,7 @@ RPC_TCP_Connector::write_handler(int fd, void *closure)
     (void) Scheduler::remove_write_handler(fd);
     RPC_TCP_Connector *conn = (RPC_TCP_Connector *) closure;
     assert(fd == conn->sockfd);
-    int rc = connect(fd, &conn->address, sizeof conn->address);
+    int rc = connect(fd, (const struct sockaddr *)&conn->address, sizeof conn->address);
     if (rc < 0 && errno != EISCONN)
     {
 	Log::perror("connect");
@@ -110,7 +110,7 @@ RPC_TCP_Connector::write_handler(int fd, void *closure)
     switch (conn->state)
     {
     case PMAPPING:
-
+    {
 	//  We have connected with portmapper; make a PMAP_GETPORT
 	//  call.
 
@@ -141,13 +141,15 @@ RPC_TCP_Connector::write_handler(int fd, void *closure)
 	else
 	    conn->try_again();
 	break;
+    }
 
     case CONNECTING:
-
+    {
 	conn->state = IDLE;
 	conn->sockfd = -1;
 	(*conn->connect_handler)(fd, conn->closure);
 	break;
+    }
 
     default:
 
