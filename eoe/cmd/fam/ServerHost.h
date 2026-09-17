@@ -76,12 +76,12 @@ private:
 	operator int ()			{ return myrequest != 0; }
 
 	Request request() const		{ return myrequest; }
-	const char *path() const	{ return mypath[0] ? mypath : NULL; }
+	const char *path() const	{ return pathbuf[0] ? pathbuf : NULL; }
 
     private:
 
 	Request myrequest;
-	char mypath[MAXNAMELEN];
+	char pathbuf[MAXNAMELEN];
 
     };
     typedef Bag<DeferredScan> DeferredScanCohort;
