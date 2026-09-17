@@ -1,9 +1,7 @@
 #ifndef Event_included
 #define Event_included
 
-#ifdef __linux__
-#include "../../include/fam.h"
-#else
+#ifndef __linux__
 #include <fam.h>
 #endif
 
