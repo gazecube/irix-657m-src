@@ -1,11 +1,7 @@
 #include "Listener.h"
 
 #include <assert.h>
-#ifdef __linux__
-#include <strings.h>
-#else
 #include <bstring.h>
-#endif
 #include <fcntl.h>
 #include <netinet/in.h>
 #include <rpc/rpc.h>
