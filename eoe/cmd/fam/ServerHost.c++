@@ -200,18 +200,18 @@ inline
 ServerHost::DeferredScan::DeferredScan(Request r, const char *s)
     : myrequest(r)
 {
-    assert(!s || strlen(s) < sizeof mypath);
+    assert(!s || strlen(s) < sizeof pathbuf);
     if (s)
-	(void) strcpy(mypath, s);
+	(void) strcpy(pathbuf, s);
     else
-	mypath[0] = '\0';
+	pathbuf[0] = '\0';
 }
 
 inline
 ServerHost::DeferredScan::DeferredScan(const DeferredScan& that)
     : myrequest(that.myrequest)
 {
-    (void) strcpy(mypath, that.mypath);
+    (void) strcpy(pathbuf, that.pathbuf);
 }
 
 ServerHost::DeferredScan&
@@ -219,7 +219,7 @@ ServerHost::DeferredScan::operator = (const DeferredScan& that)
 {
     if (this != &that)
     {   myrequest = that.myrequest;
-	(void)strcpy(mypath, that.mypath);
+	(void)strcpy(pathbuf, that.pathbuf);
     }
     return *this;
 }
