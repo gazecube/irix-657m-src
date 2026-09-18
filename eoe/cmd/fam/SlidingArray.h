@@ -39,4 +39,8 @@ private:
 
 };
 
+#ifdef __linux__
+#include "SlidingArray.c++"
+#endif
+
 #endif /* !SlidingArray_included */
