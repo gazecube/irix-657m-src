@@ -50,4 +50,8 @@ private:
 
 };
 
+#ifdef __linux__
+#include "Bag.c++"
+#endif
+
 #endif /* !Bag_included */
