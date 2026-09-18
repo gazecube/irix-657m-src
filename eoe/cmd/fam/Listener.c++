@@ -17,7 +17,7 @@
 #include "Scheduler.h"
 #include "TCP_Client.h"
 
-extern "C" bindresvport(int sd, struct sockaddr_in *);
+extern "C" int bindresvport(int sd, struct sockaddr_in *);
 
 Listener::Listener(Boolean sbi, unsigned long p, unsigned long v)
 : program(p),
@@ -109,7 +109,7 @@ Listener::accept_client(int rendezvous_fd, void *)
     // Get the new socket.
 
     struct sockaddr_in addr;
-    int addrlen = sizeof addr;
+    socklen_t addrlen = sizeof addr;
     int client_fd = accept(rendezvous_fd, (struct sockaddr *) &addr, &addrlen);
     if (client_fd < 0)
     {
@@ -252,8 +252,8 @@ Listener::accept_ugly_hack(int ugly, void *closure)
     //  Accept a new ugly connection.
 
     struct sockaddr_un sun;
-    int sunlen = sizeof sun;
-    int sock = accept(ugly, &sun, &sunlen);
+    socklen_t sunlen = sizeof sun;
+    int sock = accept(ugly, (struct sockaddr *) &sun, &sunlen);
     if (sock < 0)
     {   Log::perror("accept");
 	return;
