@@ -58,4 +58,8 @@ SmallTable<Tkey, Tvalue>::find(const Tkey& k) const
     return c.presence == Closure::PRESENT ? table[c.index].value : 0;
 }
 
+#ifdef __linux__
+#include "SmallTable.c++"
+#endif
+
 #endif /* !SmallTable_included */
