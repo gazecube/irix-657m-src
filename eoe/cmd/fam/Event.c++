@@ -16,8 +16,10 @@ Event::Event(char opcode)
 	break;
 
     case 'c':
+    {
 	int never_use_c = 0; assert(never_use_c);
 	break;
+    }
 
     case 'C':
 	which = Changed;
