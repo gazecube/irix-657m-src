@@ -12,7 +12,7 @@ SmallTable<Tkey, Tvalue>::~SmallTable()
 }
 
 template <class Tkey, class Tvalue>
-SmallTable<Tkey, Tvalue>::Closure
+typename SmallTable<Tkey, Tvalue>::Closure
 SmallTable<Tkey, Tvalue>::position(const Tkey& key) const
 {
     unsigned l = 0, r = n;
