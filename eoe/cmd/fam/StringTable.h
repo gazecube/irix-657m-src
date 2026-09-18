@@ -50,4 +50,8 @@ StringTable<Tv>::find(const Tk k) const
     return index >= 0 ? table[index].value : 0;
 }
 
+#ifdef __linux__
+#include "StringTable.c++"
+#endif
+
 #endif /* !StringTable_included */
