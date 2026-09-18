@@ -50,6 +50,10 @@ enum FAMCodes {
 # endif
 #endif
 
+#ifndef howmany
+#define howmany(x, y) (((x) + ((y) - 1)) / (y))
+#endif
+
 #ifndef SGI_NOHANG
 #define SGI_NOHANG 1
 #endif
