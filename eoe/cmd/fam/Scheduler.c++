@@ -84,7 +84,7 @@ Scheduler::install_recurring_task(const timeval& interval,
     recurring_closure = closure;
     recurring_interval = interval;
     ntasks++;
-    (void) gettimeofday(&now);
+    (void) gettimeofday(&now, NULL);
     next_task_time = now + interval;
 }
 
