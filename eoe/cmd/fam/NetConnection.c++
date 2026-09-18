@@ -1,11 +1,7 @@
 #include "NetConnection.h"
 
 #include <assert.h>
-#ifdef __linux__
-#include <strings.h>
-#else
 #include <bstring.h>
-#endif
 #include <errno.h>
 #include <stdarg.h>
 #include <stddef.h>
